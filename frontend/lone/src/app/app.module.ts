@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
 import { HomeComponent } from './home/home.component';
 
+import { ChatService } from './chat.service';
+import { WebsocketService } from './websocket.service';
+
 const appRoutes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: '', component: HomeComponent }
@@ -25,7 +28,7 @@ const appRoutes: Routes = [
     BrowserModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [ ChatService, WebsocketService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

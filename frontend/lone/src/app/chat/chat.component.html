@@ -1,3 +1,14 @@
-<p>
-  chat works!
-</p>
+
+<h2>Speak out!</h2>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let message of messages">
+    {{message}}
+  </li>
+</ul>
+
+<!-- <form> -->
+  <div class="form-group">
+    <input type="text" #box class="form-control" id="chatMessage" placeholder="Enter message..." (keyup.enter)="sendMessage(box)">
+  </div>
+<!-- </form> -->
