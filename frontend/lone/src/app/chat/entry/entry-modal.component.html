@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title">Who Dat?</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+<div class="modal-body">
+  <form>
+    <label>Streetname:</label>
+    <input class="form-control" name="username" [(ngModel)]="model.username" type="text" placeholder="Name..." />
+
+    <label>Gang Color:</label>
+    <select class="form-control" name="textColor" [(ngModel)]="model.textColor">
+    <option>
+      Crips
+    </option>
+    <option>
+      Bloods
+    </option>
+  </select>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="registerUser()">Lets Go</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
