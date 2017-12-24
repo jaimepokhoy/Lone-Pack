@@ -11,6 +11,9 @@ import { HomeComponent } from './home/home.component';
 import { ChatService } from './chat.service';
 import { WebsocketService } from './websocket.service';
 
+import { ChatEntryModalComponent } from './chat/entry/entry-modal.component';
+import { FormsModule } from '@angular/forms';
+
 const appRoutes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: '', component: HomeComponent }
@@ -21,12 +24,17 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ChatComponent,
-    HomeComponent
+    HomeComponent,
+    ChatEntryModalComponent
+  ],
+  entryComponents: [
+    ChatEntryModalComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    FormsModule
   ],
   providers: [ ChatService, WebsocketService ],
   bootstrap: [AppComponent]

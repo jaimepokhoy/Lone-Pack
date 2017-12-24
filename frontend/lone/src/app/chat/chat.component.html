@@ -1,5 +1,9 @@
+<div class="container">
 
+<div class="row">
 <h2>Speak out!</h2>
+<button class="btn" (click)="openRegisterModal()">Register</button>
+</div>
 
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let message of messages">
@@ -12,3 +16,4 @@
     <input type="text" #box class="form-control" id="chatMessage" placeholder="Enter message..." (keyup.enter)="sendMessage(box)">
   </div>
 <!-- </form> -->
+</div>
