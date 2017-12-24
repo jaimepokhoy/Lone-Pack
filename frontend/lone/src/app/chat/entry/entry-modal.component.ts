@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,12 +7,14 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class ChatEntryModalComponent {
+  @Output() onRegistered = new EventEmitter<any>();
 
   constructor(public activeModal: NgbActiveModal) {}
 
   model = {};
 
   registerUser() {
-    console.log(this.model);
+    this.onRegistered.emit(this.model);
+    this.activeModal.close('Close click');
   }
 }

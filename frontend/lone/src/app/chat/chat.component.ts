@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ChatService } from '../chat.service';
 
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -21,12 +21,15 @@ export class ChatComponent implements OnInit {
     // this.openModal();
   }
 
-  openModal() {
+  openRegisterModal() {
     const chatModal = this.modalService.open(ChatEntryModalComponent);
+    chatModal.componentInstance.onRegistered.subscribe(userData => {
+      this.registerUser(userData);
+    });
   }
 
-  register() {
-    const chatModal = this.modalService.open(ChatEntryModalComponent);
+  registerUser(userData) {
+    console.log(userData);
   }
 
   sendMessage(box) {
