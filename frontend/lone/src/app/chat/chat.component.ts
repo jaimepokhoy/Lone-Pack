@@ -31,7 +31,7 @@ export class ChatComponent implements OnInit {
 
   registerUser(userData) {
     this.username = userData.username;
-    this.color = userData.color;
+    this.color = userData.textColor;
   }
 
   sendMessage(box) {
