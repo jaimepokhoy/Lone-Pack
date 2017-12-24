@@ -11,6 +11,8 @@ import { ChatEntryModalComponent } from './entry/entry-modal.component';
 })
 export class ChatComponent implements OnInit {
   messages = [];
+  username = "";
+  color = "";
 
   constructor(private chat: ChatService, private modalService: NgbModal) { }
 
@@ -18,7 +20,6 @@ export class ChatComponent implements OnInit {
     this.chat.messages.subscribe(msg => {
       this.messages.push(msg);
     })
-    // this.openModal();
   }
 
   openRegisterModal() {
@@ -29,11 +30,21 @@ export class ChatComponent implements OnInit {
   }
 
   registerUser(userData) {
-    console.log(userData);
+    this.username = userData.username;
+    this.color = userData.color;
   }
 
   sendMessage(box) {
-    this.chat.sendMsg(box.value);
+    const { username, color } = this;
+    const text = box.value;
+
+    const msgData = {
+      username,
+      color,
+      text
+    };
+
+    this.chat.sendMsg(msgData);
     box.value = "";
   }
 
