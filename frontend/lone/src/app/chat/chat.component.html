@@ -1,21 +1,19 @@
 <div class="container">
 
-<div class="row">
-<h2>Speak out!</h2>
-<button class="btn" (click)="openRegisterModal()">Register</button>
-</div>
-
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let message of messages" [ngStyle]="{'color': message.color}">
-    {{message.username}}: {{message.text}}
-  </li>
-</ul>
-
-<!-- <form> -->
-  <div class="form-group">
-    <!-- <input type="text" #box class="form-control" id="chatMessage" [style.color]="color" placeholder="Enter message..." (keyup.enter)="sendMessage(box)"> -->
-    <input type="text" #box class="form-control" id="chatMessage" [ngStyle]="{'color': color}" placeholder="Enter message..." (keyup.enter)="sendMessage(box)">
-    <!-- <div class="sidebar-nav" [ngStyle]="{overflow: 'scroll', height: height + 'px'}"> -->
+  <div class="row justify-content-between">
+    <h2>Speak out!</h2>
+    <button *ngIf="registered !== 'true'" class="btn" (click)="openRegisterModal()">Register</button>
   </div>
-<!-- </form> -->
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let message of messages" [ngStyle]="{'color': message.color}">
+      <div class="alert" [ngClass]="(message.username===username)?'alert-primary text-right':'alert-success'">
+        {{message.username}}: {{message.text}}
+      </div>
+    </li>
+  </ul>
+
+  <div class="form-group">
+    <input type="text" #box class="form-control" id="chatMessage" [ngStyle]="{'color': color}" placeholder="Enter message..." (keyup.enter)="sendMessage(box)">
+  </div>
 </div>

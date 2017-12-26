@@ -13,13 +13,16 @@ export class ChatComponent implements OnInit {
   messages = [];
   username = "";
   color = "";
+  registered = 'false';
 
   constructor(private chat: ChatService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.chat.messages.subscribe(msg => {
       this.messages.push(msg);
-    })
+    });
+
+    localStorage.removeItem('registered');
   }
 
   openRegisterModal() {
@@ -31,7 +34,10 @@ export class ChatComponent implements OnInit {
 
   registerUser(userData) {
     this.username = userData.username;
-    this.color = userData.textColor;
+    this.color = userData.textColor === 'red' ? '#873737' : '#5990ea';
+
+    localStorage.setItem('registered', 'true');
+    this.registered = 'true';
   }
 
   sendMessage(box) {
