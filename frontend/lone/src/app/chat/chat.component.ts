@@ -11,14 +11,18 @@ import { ChatEntryModalComponent } from './entry/entry-modal.component';
 })
 export class ChatComponent implements OnInit {
   messages = [];
+  username = "";
+  color = "";
+  registered = 'false';
 
   constructor(private chat: ChatService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.chat.messages.subscribe(msg => {
       this.messages.push(msg);
-    })
-    // this.openModal();
+    });
+
+    localStorage.removeItem('registered');
   }
 
   openRegisterModal() {
@@ -29,11 +33,24 @@ export class ChatComponent implements OnInit {
   }
 
   registerUser(userData) {
-    console.log(userData);
+    this.username = userData.username;
+    this.color = userData.textColor === 'red' ? '#873737' : '#5990ea';
+
+    localStorage.setItem('registered', 'true');
+    this.registered = 'true';
   }
 
   sendMessage(box) {
-    this.chat.sendMsg(box.value);
+    const { username, color } = this;
+    const text = box.value;
+
+    const msgData = {
+      username,
+      color,
+      text
+    };
+
+    this.chat.sendMsg(msgData);
     box.value = "";
   }
 
