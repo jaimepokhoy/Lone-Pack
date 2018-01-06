@@ -11,7 +11,10 @@ export class ChatEntryModalComponent {
 
   constructor(public activeModal: NgbActiveModal) {}
 
-  model = {};
+  model = {
+    username: "",
+    textColor: ""
+  };
 
   registerUser() {
     this.onRegistered.emit(this.model);

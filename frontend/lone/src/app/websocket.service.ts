@@ -8,11 +8,12 @@ import { environment } from '../environments/environment';
 export class WebsocketService {
 
   private socket;
+  path = environment.path;
 
   constructor() { }
 
   connect(): Rx.Subject<MessageEvent> {
-    this.socket = io('http://localhost:3000');
+    this.socket = io(this.path);
     // this.socket = io(environment.ws_url);
 
     let observable = new Observable(observer => {
